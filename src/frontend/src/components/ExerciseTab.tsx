@@ -18,13 +18,14 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import {
+  bodyParts,
   exerciseCategories,
   exerciseGoals,
   exerciseLevels,
   exercises,
 } from "@/data/exercises";
 import type { Exercise } from "@/data/exercises";
-import { Clock, Dumbbell, Flame } from "lucide-react";
+import { Clock, Dumbbell, Flame, Target } from "lucide-react";
 import { useMemo, useState } from "react";
 
 const weekDays = [
@@ -41,6 +42,7 @@ export function ExerciseTab() {
   const [selectedLevel, setSelectedLevel] = useState<string>("All");
   const [selectedGoal, setSelectedGoal] = useState<string>("All");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedBodyPart, setSelectedBodyPart] = useState<string>("All");
   const [showPlanner, setShowPlanner] = useState(false);
   const [viewExercise, setViewExercise] = useState<Exercise | null>(null);
   const [weekPlan, setWeekPlan] = useState<Record<string, string[]>>(() => {
@@ -59,9 +61,11 @@ export function ExerciseTab() {
         const matchG = selectedGoal === "All" || e.goals.includes(selectedGoal);
         const matchC =
           selectedCategory === "All" || e.category === selectedCategory;
-        return matchL && matchG && matchC;
+        const matchBP =
+          selectedBodyPart === "All" || e.bodyPart === selectedBodyPart;
+        return matchL && matchG && matchC && matchBP;
       }),
-    [selectedLevel, selectedGoal, selectedCategory],
+    [selectedLevel, selectedGoal, selectedCategory, selectedBodyPart],
   );
 
   const togglePlanExercise = (day: string, exId: string) => {
@@ -84,6 +88,49 @@ export function ExerciseTab() {
 
   return (
     <div className="space-y-5">
+      {/* Quick Body Part Fat Burn Shortcuts */}
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <Target className="w-4 h-4 text-primary" />
+          <span className="text-sm font-semibold">Targeted Fat Burn</span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+              selectedBodyPart === "All"
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-muted/40 text-muted-foreground border-border hover:border-primary/50"
+            }`}
+            onClick={() => {
+              setSelectedBodyPart("All");
+              setSelectedGoal("All");
+            }}
+            data-ocid="exercise.bodypart.all.button"
+          >
+            All
+          </button>
+          {bodyParts.map((bp) => (
+            <button
+              key={bp}
+              type="button"
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                selectedBodyPart === bp
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-muted/40 text-muted-foreground border-border hover:border-primary/50"
+              }`}
+              onClick={() => {
+                setSelectedBodyPart(bp);
+                setSelectedGoal("Fat Burn");
+              }}
+              data-ocid={`exercise.bodypart.${bp.toLowerCase().replace(/[^a-z0-9]/g, "_")}.button`}
+            >
+              {bp}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="flex flex-wrap gap-2 items-center">
         <Select value={selectedLevel} onValueChange={setSelectedLevel}>
           <SelectTrigger className="w-36" data-ocid="exercise.level.select">
@@ -136,6 +183,25 @@ export function ExerciseTab() {
           />
         </div>
       </div>
+
+      {selectedBodyPart !== "All" && (
+        <div className="flex items-center gap-2 text-sm text-primary">
+          <Target className="w-3 h-3" />
+          <span>
+            Showing fat burn exercises for: <strong>{selectedBodyPart}</strong>
+          </span>
+          <button
+            type="button"
+            className="text-xs text-muted-foreground underline"
+            onClick={() => {
+              setSelectedBodyPart("All");
+              setSelectedGoal("All");
+            }}
+          >
+            Clear
+          </button>
+        </div>
+      )}
 
       {showPlanner && (
         <Card className="bg-card border-border">
@@ -207,6 +273,12 @@ export function ExerciseTab() {
                   {ex.category}
                 </span>
               </div>
+              {ex.bodyPart && (
+                <div className="flex items-center gap-1 mt-1">
+                  <Target className="w-3 h-3 text-primary" />
+                  <span className="text-xs text-primary">{ex.bodyPart}</span>
+                </div>
+              )}
             </CardHeader>
             <CardContent>
               <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
@@ -250,6 +322,15 @@ export function ExerciseTab() {
                         <Badge variant="outline" className="text-primary">
                           {viewExercise.caloriesBurn} kcal
                         </Badge>
+                        {viewExercise.bodyPart && (
+                          <Badge
+                            variant="outline"
+                            className="text-primary border-primary/40"
+                          >
+                            <Target className="w-3 h-3 mr-1" />
+                            {viewExercise.bodyPart}
+                          </Badge>
+                        )}
                       </div>
                       <p className="text-sm text-muted-foreground">
                         {viewExercise.description}

@@ -2,6 +2,7 @@ import { BMITab } from "@/components/BMITab";
 import { ExerciseTab } from "@/components/ExerciseTab";
 import { FastingTab } from "@/components/FastingTab";
 import { FoodTrackerTab } from "@/components/FoodTrackerTab";
+import { LoginScreen } from "@/components/LoginScreen";
 import { ProgressTab } from "@/components/ProgressTab";
 import { RecipesTab } from "@/components/RecipesTab";
 import { StepsTab } from "@/components/StepsTab";
@@ -14,6 +15,7 @@ import {
   BookOpen,
   Dumbbell,
   Footprints,
+  LogOut,
   Menu,
   Timer,
   UtensilsCrossed,
@@ -34,8 +36,25 @@ const tabs = [
 ];
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState<string | null>(() => {
+    return localStorage.getItem("bmi_current_user");
+  });
   const [activeTab, setActiveTab] = useState("bmi");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  function handleLogin(username: string) {
+    setCurrentUser(username);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("bmi_current_user");
+    setCurrentUser(null);
+    setMobileMenuOpen(false);
+  }
+
+  if (!currentUser) {
+    return <LoginScreen onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -51,7 +70,7 @@ export default function App() {
                 BMI Pro
               </h1>
               <p className="text-xs text-muted-foreground">
-                Health & Fitness Calculator
+                Health &amp; Fitness Calculator
               </p>
             </div>
           </div>
@@ -79,20 +98,37 @@ export default function App() {
             })}
           </nav>
 
-          {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="lg:hidden"
-            onClick={() => setMobileMenuOpen((p) => !p)}
-            data-ocid="nav.mobile_menu.button"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </Button>
+          {/* Right side: user info + logout */}
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:block text-xs text-muted-foreground">
+              👤 {currentUser}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="hidden lg:flex items-center gap-1.5 text-muted-foreground hover:text-destructive"
+              data-ocid="nav.logout.button"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </Button>
+
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="lg:hidden"
+              onClick={() => setMobileMenuOpen((p) => !p)}
+              data-ocid="nav.mobile_menu.button"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
@@ -120,6 +156,16 @@ export default function App() {
                 </button>
               );
             })}
+            {/* Mobile logout */}
+            <button
+              type="button"
+              onClick={handleLogout}
+              data-ocid="nav.mobile_logout.button"
+              className="flex items-center gap-3 w-full px-5 py-3 text-sm text-destructive hover:bg-destructive/10 transition-colors border-t border-border"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout ({currentUser})
+            </button>
           </div>
         )}
       </header>
@@ -198,7 +244,7 @@ export default function App() {
           <TabsContent value="yoga" className="mt-0">
             <div className="mb-4">
               <h2 className="font-display font-bold text-2xl">
-                Yoga & Pranayama
+                Yoga &amp; Pranayama
               </h2>
               <p className="text-sm text-muted-foreground">
                 Poses, breathing exercises, and goal-based practice

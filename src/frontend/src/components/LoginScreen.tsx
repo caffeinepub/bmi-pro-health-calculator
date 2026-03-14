@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Activity, Eye, EyeOff, Heart, Lock, User } from "lucide-react";
+import { Activity, Eye, EyeOff, Lock, User } from "lucide-react";
 import { useState } from "react";
 
 interface LoginScreenProps {
@@ -253,19 +253,6 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
             </p>
           )}
         </div>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-muted-foreground mt-6 flex items-center justify-center gap-1">
-          Built with <Heart className="w-3 h-3 text-primary" /> using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            caffeine.ai
-          </a>
-        </p>
       </div>
     </div>
   );

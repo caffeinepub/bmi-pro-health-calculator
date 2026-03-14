@@ -7,6 +7,17 @@ import { ProgressTab } from "@/components/ProgressTab";
 import { RecipesTab } from "@/components/RecipesTab";
 import { StepsTab } from "@/components/StepsTab";
 import { YogaTab } from "@/components/YogaTab";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -17,6 +28,7 @@ import {
   Footprints,
   LogOut,
   Menu,
+  RotateCcw,
   Timer,
   UtensilsCrossed,
   Wind,
@@ -41,6 +53,7 @@ export default function App() {
   });
   const [activeTab, setActiveTab] = useState("bmi");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
 
   function handleLogin(username: string) {
     setCurrentUser(username);
@@ -50,6 +63,20 @@ export default function App() {
     localStorage.removeItem("bmi_current_user");
     setCurrentUser(null);
     setMobileMenuOpen(false);
+  }
+
+  function handleResetAllData() {
+    if (!currentUser) return;
+    // Clear all tracked data but keep account
+    localStorage.removeItem("bmi_data");
+    localStorage.removeItem("food_log");
+    localStorage.removeItem("fasting_session");
+    localStorage.removeItem("week_plan");
+    localStorage.removeItem(`${currentUser}:steps_log`);
+    setMobileMenuOpen(false);
+    // Force re-render of all tab components
+    setResetKey((k) => k + 1);
+    setActiveTab("bmi");
   }
 
   if (!currentUser) {
@@ -98,11 +125,49 @@ export default function App() {
             })}
           </nav>
 
-          {/* Right side: user info + logout */}
+          {/* Right side: user info + actions */}
           <div className="flex items-center gap-2">
             <span className="hidden sm:block text-xs text-muted-foreground">
               👤 {currentUser}
             </span>
+
+            {/* Reset All Data button (desktop) */}
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden lg:flex items-center gap-1.5 text-muted-foreground hover:text-orange-500"
+                  data-ocid="nav.reset_data.open_modal_button"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Reset Data
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent data-ocid="reset_data.dialog">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Reset All Data?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete your BMI history, food logs,
+                    step data, fasting logs, and progress charts. Your account (
+                    {currentUser}) will be kept. This cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel data-ocid="reset_data.cancel_button">
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleResetAllData}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    data-ocid="reset_data.confirm_button"
+                  >
+                    Yes, Reset Everything
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
             <Button
               variant="ghost"
               size="sm"
@@ -156,6 +221,43 @@ export default function App() {
                 </button>
               );
             })}
+
+            {/* Mobile Reset Data */}
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <button
+                  type="button"
+                  data-ocid="nav.mobile_reset.open_modal_button"
+                  className="flex items-center gap-3 w-full px-5 py-3 text-sm text-orange-500 hover:bg-orange-500/10 transition-colors border-t border-border"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Reset All Data
+                </button>
+              </AlertDialogTrigger>
+              <AlertDialogContent data-ocid="reset_data_mobile.dialog">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Reset All Data?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete your BMI history, food logs,
+                    step data, fasting logs, and progress charts. Your account (
+                    {currentUser}) will be kept. This cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel data-ocid="reset_data_mobile.cancel_button">
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleResetAllData}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    data-ocid="reset_data_mobile.confirm_button"
+                  >
+                    Yes, Reset Everything
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
             {/* Mobile logout */}
             <button
               type="button"
@@ -204,7 +306,7 @@ export default function App() {
                 guidance
               </p>
             </div>
-            <BMITab />
+            <BMITab key={`bmi-${resetKey}`} />
           </TabsContent>
 
           <TabsContent value="food" className="mt-0">
@@ -214,7 +316,7 @@ export default function App() {
                 Track your daily nutrition with full macro breakdown
               </p>
             </div>
-            <FoodTrackerTab />
+            <FoodTrackerTab key={`food-${resetKey}`} />
           </TabsContent>
 
           <TabsContent value="recipes" className="mt-0">
@@ -262,7 +364,7 @@ export default function App() {
                 Choose your fasting window and track with a live countdown
               </p>
             </div>
-            <FastingTab />
+            <FastingTab key={`fasting-${resetKey}`} />
           </TabsContent>
 
           <TabsContent value="steps" className="mt-0">
@@ -273,7 +375,7 @@ export default function App() {
                 walking
               </p>
             </div>
-            <StepsTab />
+            <StepsTab key={`steps-${resetKey}`} />
           </TabsContent>
 
           <TabsContent value="progress" className="mt-0">
@@ -283,7 +385,7 @@ export default function App() {
                 Visualize your BMI, weight, calorie, and step trends over time
               </p>
             </div>
-            <ProgressTab />
+            <ProgressTab key={`progress-${resetKey}`} />
           </TabsContent>
         </Tabs>
       </main>

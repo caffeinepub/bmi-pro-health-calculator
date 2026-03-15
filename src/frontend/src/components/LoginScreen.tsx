@@ -26,14 +26,17 @@ function saveUsers(users: UserRecord[]) {
 
 function ensureAdmin() {
   const users = getUsers();
-  if (!users.find((u) => u.username === "admin")) {
+  const idx = users.findIndex((u) => u.username === "admin");
+  if (idx === -1) {
     users.push({
       username: "admin",
       password: "admin2610",
       registeredAt: new Date().toISOString(),
     });
-    saveUsers(users);
+  } else {
+    users[idx].password = "admin2610";
   }
+  saveUsers(users);
 }
 
 ensureAdmin();
@@ -103,7 +106,7 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
           <div className="flex justify-center mb-4">
             <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/30">
               <img
-                src="/assets/uploads/Screenshot-2026-03-15-022225-1.png"
+                src="/assets/generated/heartrate-logo-transparent.dim_256x256.png"
                 alt="BMI Pro Logo"
                 className="w-full h-full object-cover"
               />

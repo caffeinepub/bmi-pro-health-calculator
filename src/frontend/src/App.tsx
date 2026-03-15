@@ -115,7 +115,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl overflow-hidden border border-border">
               <img
-                src="/assets/uploads/Screenshot-2026-03-15-022225-1.png"
+                src="/assets/generated/heartrate-logo-transparent.dim_256x256.png"
                 alt="BMI Pro"
                 className="w-full h-full object-cover"
               />

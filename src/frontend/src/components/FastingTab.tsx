@@ -129,10 +129,10 @@ interface FastingSession {
   isActive: boolean;
 }
 
-export function FastingTab() {
+export function FastingTab({ username }: { username: string }) {
   const [session, setSession] = useState<FastingSession | null>(() => {
     try {
-      const saved = localStorage.getItem("fasting_session");
+      const saved = localStorage.getItem(`bmi_pro_${username}_fasting_logs`);
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -158,12 +158,15 @@ export function FastingTab() {
       isActive: true,
     };
     setSession(newSession);
-    localStorage.setItem("fasting_session", JSON.stringify(newSession));
+    localStorage.setItem(
+      `bmi_pro_${username}_fasting_logs`,
+      JSON.stringify(newSession),
+    );
   };
 
   const stopFast = () => {
     setSession(null);
-    localStorage.removeItem("fasting_session");
+    localStorage.removeItem(`bmi_pro_${username}_fasting_logs`);
   };
 
   const getActiveWindow = () => {

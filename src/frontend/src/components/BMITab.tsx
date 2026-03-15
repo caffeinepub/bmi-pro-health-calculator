@@ -54,10 +54,10 @@ const activityLabels: Record<string, string> = {
   veryActive: "Extra Active (athlete / physical job)",
 };
 
-export function BMITab() {
+export function BMITab({ username }: { username: string }) {
   const [data, setData] = useState<BMIData>(() => {
     try {
-      const saved = localStorage.getItem("bmi_data");
+      const saved = localStorage.getItem(`bmi_pro_${username}_bmi_history`);
       return saved
         ? { ...defaultBMIData, ...JSON.parse(saved) }
         : defaultBMIData;
@@ -67,8 +67,11 @@ export function BMITab() {
   });
 
   useEffect(() => {
-    localStorage.setItem("bmi_data", JSON.stringify(data));
-  }, [data]);
+    localStorage.setItem(
+      `bmi_pro_${username}_bmi_history`,
+      JSON.stringify(data),
+    );
+  }, [data, username]);
 
   const getHeightInCm = (): number => {
     if (data.heightUnit === "cm") return Number.parseFloat(data.height) || 0;

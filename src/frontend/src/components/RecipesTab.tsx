@@ -64,6 +64,25 @@ export function RecipesTab() {
 
   return (
     <div className="space-y-5">
+      {/* Hero Image */}
+      <div className="rounded-xl overflow-hidden relative h-36 sm:h-48 mb-2">
+        <img
+          src="/assets/generated/recipes-hero.dim_800x400.jpg"
+          alt="Recipes"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
+          <div>
+            <h2 className="font-display font-bold text-2xl text-white">
+              Healthy Recipes 🍽️
+            </h2>
+            <p className="text-white/80 text-sm">
+              Indian, Regional & Global Cuisines
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-wrap gap-2">
         <Select value={selectedCuisine} onValueChange={setSelectedCuisine}>
           <SelectTrigger className="w-40" data-ocid="recipes.cuisine.select">
@@ -118,6 +137,14 @@ export function RecipesTab() {
             className="bg-card border-border card-hover"
             data-ocid={`recipes.recipe.item.${idx + 1}`}
           >
+            <div className="relative h-36 overflow-hidden rounded-t-lg">
+              <img
+                src={recipe.image}
+                alt={recipe.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            </div>
             <CardHeader className="pb-2">
               <div className="flex justify-between items-start gap-2">
                 <CardTitle className="text-sm font-display leading-tight">

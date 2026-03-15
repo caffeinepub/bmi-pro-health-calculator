@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useInternetIdentity } from "@/hooks/useInternetIdentity";
 import { Footprints } from "lucide-react";
 import { useMemo } from "react";
 import {
@@ -44,14 +43,12 @@ function getStepColor(steps: number) {
   return "oklch(0.65 0.22 25)";
 }
 
-export function ProgressTab() {
-  const { identity } = useInternetIdentity();
-  const principal = identity?.getPrincipal().toString() ?? null;
-  const stepsKey = principal ? `${principal}:steps_log` : "steps_log";
+export function ProgressTab({ username }: { username: string }) {
+  const stepsKey = `bmi_pro_${username}_step_logs`;
 
   const bmiData = useMemo((): ProgressEntry[] => {
     try {
-      const raw = localStorage.getItem("bmi_data");
+      const raw = localStorage.getItem(`bmi_pro_${username}_bmi_history`);
       if (!raw) return [];
       const d = JSON.parse(raw);
       const heightCm =
@@ -93,11 +90,11 @@ export function ProgressTab() {
     } catch {
       return [];
     }
-  }, []);
+  }, [username]);
 
   const calorieData = useMemo(() => {
     try {
-      const raw = localStorage.getItem("food_log");
+      const raw = localStorage.getItem(`bmi_pro_${username}_food_logs`);
       if (!raw) return [];
       const log: LogEntry[] = JSON.parse(raw);
       const byDate: Record<
@@ -126,7 +123,7 @@ export function ProgressTab() {
     } catch {
       return [];
     }
-  }, []);
+  }, [username]);
 
   const stepsChartData = useMemo(() => {
     try {
@@ -154,7 +151,7 @@ export function ProgressTab() {
 
   const targetWeight = useMemo(() => {
     try {
-      const raw = localStorage.getItem("bmi_data");
+      const raw = localStorage.getItem(`bmi_pro_${username}_bmi_history`);
       if (!raw) return null;
       const d = JSON.parse(raw);
       const target = Number.parseFloat(d.targetWeight);
@@ -163,7 +160,7 @@ export function ProgressTab() {
     } catch {
       return null;
     }
-  }, []);
+  }, [username]);
 
   const tooltipStyle = {
     backgroundColor: "oklch(0.18 0.025 160)",

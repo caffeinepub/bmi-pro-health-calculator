@@ -15,6 +15,7 @@ export interface Recipe {
   tags: string[];
   ingredients: string[];
   instructions: string[];
+  image: string;
 }
 
 export const recipes: Recipe[] = [
@@ -52,6 +53,7 @@ export const recipes: Recipe[] = [
       "Mix gently, cook 2 mins",
       "Finish with lemon juice and coriander",
     ],
+    image: "/assets/generated/recipe-masala-oats-poha.dim_400x250.jpg",
   },
   {
     id: "rec2",
@@ -87,6 +89,7 @@ export const recipes: Recipe[] = [
       "Cook both sides with oil",
       "Serve with butter or curd",
     ],
+    image: "/assets/generated/recipe-thalipeeth.dim_400x250.jpg",
   },
   {
     id: "rec3",
@@ -121,6 +124,7 @@ export const recipes: Recipe[] = [
       "Top with farsan, onion, lemon",
       "Serve hot with pav",
     ],
+    image: "/assets/generated/recipe-misal-pav.dim_400x250.jpg",
   },
   {
     id: "rec4",
@@ -155,6 +159,7 @@ export const recipes: Recipe[] = [
       "Cook until translucent",
       "Season with salt and lemon",
     ],
+    image: "/assets/generated/recipe-sabudana-khichdi.dim_400x250.jpg",
   },
   {
     id: "rec5",
@@ -188,6 +193,7 @@ export const recipes: Recipe[] = [
       "Pressure cook together",
       "Serve with pickle and papad",
     ],
+    image: "/assets/generated/recipe-dal-khichdi.dim_400x250.jpg",
   },
   {
     id: "rec6",
@@ -220,6 +226,7 @@ export const recipes: Recipe[] = [
       "Deep fry bhaturas",
       "Serve together with pickles",
     ],
+    image: "/assets/generated/recipe-chole-bhature.dim_400x250.jpg",
   },
   {
     id: "rec7",
@@ -253,6 +260,7 @@ export const recipes: Recipe[] = [
       "Add paneer cubes",
       "Finish with cream",
     ],
+    image: "/assets/generated/recipe-palak-paneer.dim_400x250.jpg",
   },
   {
     id: "rec8",
@@ -286,6 +294,7 @@ export const recipes: Recipe[] = [
       "Add chicken to sauce",
       "Finish with cream and kasuri methi",
     ],
+    image: "/assets/generated/recipe-butter-chicken.dim_400x250.jpg",
   },
   {
     id: "rec9",
@@ -318,6 +327,7 @@ export const recipes: Recipe[] = [
       "Add masala and fold",
       "Serve with sambar and chutney",
     ],
+    image: "/assets/generated/recipe-masala-dosa.dim_400x250.jpg",
   },
   {
     id: "rec10",
@@ -349,6 +359,7 @@ export const recipes: Recipe[] = [
       "Spread on toast",
       "Top with tomatoes and spices",
     ],
+    image: "/assets/generated/recipe-avocado-toast.dim_400x250.jpg",
   },
   {
     id: "rec11",
@@ -383,6 +394,7 @@ export const recipes: Recipe[] = [
       "Dress with olive oil and lemon",
       "Add feta and olives",
     ],
+    image: "/assets/generated/recipe-greek-salad-chicken.dim_400x250.jpg",
   },
   {
     id: "rec12",
@@ -417,6 +429,7 @@ export const recipes: Recipe[] = [
       "Add tofu and sauce",
       "Serve over brown rice",
     ],
+    image: "/assets/generated/recipe-veggie-stir-fry-tofu.dim_400x250.jpg",
   },
   {
     id: "rec13",
@@ -449,6 +462,7 @@ export const recipes: Recipe[] = [
       "Cook steamed rice",
       "Serve rajma over rice",
     ],
+    image: "/assets/generated/recipe-rajma-rice.dim_400x250.jpg",
   },
   {
     id: "rec14",
@@ -481,6 +495,7 @@ export const recipes: Recipe[] = [
       "Drizzle honey",
       "Add chia seeds",
     ],
+    image: "/assets/generated/recipe-protein-smoothie-bowl.dim_400x250.jpg",
   },
   {
     id: "rec15",
@@ -514,6 +529,7 @@ export const recipes: Recipe[] = [
       "Serve zunka with hot bhakri",
       "Accompany with onion and oil",
     ],
+    image: "/assets/generated/recipe-zunka-bhakri.dim_400x250.jpg",
   },
   {
     id: "rec16",
@@ -548,6 +564,7 @@ export const recipes: Recipe[] = [
       "Assemble with cabbage and avocado",
       "Top with chipotle sauce and lime",
     ],
+    image: "/assets/generated/recipe-fish-tacos.dim_400x250.jpg",
   },
 ];
 

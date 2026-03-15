@@ -11,6 +11,7 @@ export interface Exercise {
   description: string;
   instructions: string[];
   equipment: string;
+  image: string;
 }
 
 export const exercises: Exercise[] = [
@@ -34,6 +35,7 @@ export const exercises: Exercise[] = [
       "Start with 20 mins, build to 45 mins",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-brisk-walking.dim_400x250.jpg",
   },
   {
     id: "ex2",
@@ -54,6 +56,7 @@ export const exercises: Exercise[] = [
       "Do 3 sets of 30 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-jumping-jacks.dim_400x250.jpg",
   },
   {
     id: "ex3",
@@ -75,6 +78,7 @@ export const exercises: Exercise[] = [
       "Do 3 sets of 10-15 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-push-ups.dim_400x250.jpg",
   },
   {
     id: "ex4",
@@ -96,6 +100,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15-20 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-bodyweight-squats.dim_400x250.jpg",
   },
   {
     id: "ex5",
@@ -116,6 +121,7 @@ export const exercises: Exercise[] = [
       "Rest 30 secs, repeat 3 times",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-plank-hold.dim_400x250.jpg",
   },
   {
     id: "ex6",
@@ -137,6 +143,7 @@ export const exercises: Exercise[] = [
       "Cool down with 5 min walk",
     ],
     equipment: "Running Shoes",
+    image: "/assets/generated/exercise-running.dim_400x250.jpg",
   },
   {
     id: "ex7",
@@ -157,6 +164,7 @@ export const exercises: Exercise[] = [
       "3-4 sets of 10-12 reps each side",
     ],
     equipment: "Dumbbells, Bench",
+    image: "/assets/generated/exercise-dumbbell-rows.dim_400x250.jpg",
   },
   {
     id: "ex8",
@@ -177,6 +185,7 @@ export const exercises: Exercise[] = [
       "Alternate legs, 3 sets of 12 each",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-lunges.dim_400x250.jpg",
   },
   {
     id: "ex9",
@@ -197,6 +206,7 @@ export const exercises: Exercise[] = [
       "Alternate sides in cycling motion, 3 sets of 20",
     ],
     equipment: "Yoga Mat",
+    image: "/assets/generated/exercise-bicycle-crunches.dim_400x250.jpg",
   },
   {
     id: "ex10",
@@ -218,6 +228,7 @@ export const exercises: Exercise[] = [
       "Explode upward with jump and clap",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-burpees.dim_400x250.jpg",
   },
   {
     id: "ex11",
@@ -238,6 +249,7 @@ export const exercises: Exercise[] = [
       "Lock out hips at top, lower with control",
     ],
     equipment: "Barbell, Plates",
+    image: "/assets/generated/exercise-deadlifts.dim_400x250.jpg",
   },
   {
     id: "ex12",
@@ -258,6 +270,7 @@ export const exercises: Exercise[] = [
       "3-5 sets to failure",
     ],
     equipment: "Pull-Up Bar",
+    image: "/assets/generated/exercise-pull-ups.dim_400x250.jpg",
   },
   {
     id: "ex13",
@@ -278,6 +291,7 @@ export const exercises: Exercise[] = [
       "Cool down with light stretching",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-hiit-circuit.dim_400x250.jpg",
   },
   {
     id: "ex14",
@@ -298,6 +312,7 @@ export const exercises: Exercise[] = [
       "Aim for 30-60 mins",
     ],
     equipment: "Pool, Swimwear",
+    image: "/assets/generated/exercise-swimming.dim_400x250.jpg",
   },
   {
     id: "ex15",
@@ -318,6 +333,7 @@ export const exercises: Exercise[] = [
       "30 secs on, 15 secs rest, repeat 4x",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-mountain-climbers.dim_400x250.jpg",
   },
   // --- Fat Burn: Abs & Core ---
   {
@@ -339,6 +355,7 @@ export const exercises: Exercise[] = [
       "3 sets of 20 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-crunches.dim_400x250.jpg",
   },
   {
     id: "fb_abs2",
@@ -359,6 +376,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-leg-raises.dim_400x250.jpg",
   },
   {
     id: "fb_abs3",
@@ -379,6 +397,7 @@ export const exercises: Exercise[] = [
       "3 sets of 20 total twists",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-russian-twists.dim_400x250.jpg",
   },
   {
     id: "fb_abs4",
@@ -399,6 +418,7 @@ export const exercises: Exercise[] = [
       "3 sets of 30 seconds",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-flutter-kicks.dim_400x250.jpg",
   },
   // --- Fat Burn: Arms ---
   {
@@ -420,6 +440,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12-15 reps",
     ],
     equipment: "Chair",
+    image: "/assets/generated/exercise-tricep-dips.dim_400x250.jpg",
   },
   {
     id: "fb_arms2",
@@ -441,6 +462,7 @@ export const exercises: Exercise[] = [
       "3 sets of 1 minute",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-arm-circles.dim_400x250.jpg",
   },
   {
     id: "fb_arms3",
@@ -461,6 +483,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12 reps each arm",
     ],
     equipment: "Dumbbells",
+    image: "/assets/generated/exercise-bicep-curls.dim_400x250.jpg",
   },
   {
     id: "fb_arms4",
@@ -482,6 +505,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12-15 reps each side",
     ],
     equipment: "Dumbbells",
+    image: "/assets/generated/exercise-tricep-kickbacks.dim_400x250.jpg",
   },
   // --- Fat Burn: Chest ---
   {
@@ -503,6 +527,7 @@ export const exercises: Exercise[] = [
       "3 sets of 10-15 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-wide-push-ups.dim_400x250.jpg",
   },
   {
     id: "fb_chest2",
@@ -524,6 +549,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps",
     ],
     equipment: "Pillow or Medicine Ball",
+    image: "/assets/generated/exercise-chest-squeeze-press.dim_400x250.jpg",
   },
   {
     id: "fb_chest3",
@@ -544,6 +570,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12-15 reps",
     ],
     equipment: "Dumbbells",
+    image: "/assets/generated/exercise-chest-fly.dim_400x250.jpg",
   },
   // --- Fat Burn: Back ---
   {
@@ -565,6 +592,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-superman-hold.dim_400x250.jpg",
   },
   {
     id: "fb_back2",
@@ -586,6 +614,7 @@ export const exercises: Exercise[] = [
       "3 sets of 12-15 reps",
     ],
     equipment: "Resistance Band",
+    image: "/assets/generated/exercise-bent-over-rows.dim_400x250.jpg",
   },
   {
     id: "fb_back3",
@@ -607,6 +636,7 @@ export const exercises: Exercise[] = [
       "3 sets of 10 breaths",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-cat-cow.dim_400x250.jpg",
   },
   // --- Fat Burn: Thighs & Legs ---
   {
@@ -628,6 +658,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-sumo-squats.dim_400x250.jpg",
   },
   {
     id: "fb_legs2",
@@ -648,6 +679,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps each side",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-inner-thigh-raises.dim_400x250.jpg",
   },
   {
     id: "fb_legs3",
@@ -668,6 +700,7 @@ export const exercises: Exercise[] = [
       "3 sets of 30-60 second holds",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-wall-sit.dim_400x250.jpg",
   },
   {
     id: "fb_legs4",
@@ -688,6 +721,7 @@ export const exercises: Exercise[] = [
       "3 sets of 20 reps each side",
     ],
     equipment: "Step or Bench",
+    image: "/assets/generated/exercise-step-ups.dim_400x250.jpg",
   },
   // --- Fat Burn: Glutes & Hips ---
   {
@@ -709,6 +743,7 @@ export const exercises: Exercise[] = [
       "3 sets of 20 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-glute-bridges.dim_400x250.jpg",
   },
   {
     id: "fb_glutes2",
@@ -729,6 +764,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps each side",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-donkey-kicks.dim_400x250.jpg",
   },
   {
     id: "fb_glutes3",
@@ -749,6 +785,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps each side",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-fire-hydrants.dim_400x250.jpg",
   },
   {
     id: "fb_glutes4",
@@ -769,6 +806,7 @@ export const exercises: Exercise[] = [
       "Lower and repeat, 3 sets of 12 reps",
     ],
     equipment: "Bench, Optional Barbell",
+    image: "/assets/generated/exercise-hip-thrust.dim_400x250.jpg",
   },
   // --- Fat Burn: Full Body ---
   {
@@ -790,6 +828,7 @@ export const exercises: Exercise[] = [
       "3 sets of 15 reps",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-jump-squats.dim_400x250.jpg",
   },
   {
     id: "fb_full2",
@@ -811,6 +850,7 @@ export const exercises: Exercise[] = [
       "Crawl forward 10m, back 10m, repeat 4x",
     ],
     equipment: "None",
+    image: "/assets/generated/exercise-bear-crawls.dim_400x250.jpg",
   },
   {
     id: "fb_full3",
@@ -832,6 +872,7 @@ export const exercises: Exercise[] = [
       "3 sets of 20 reps",
     ],
     equipment: "Kettlebell",
+    image: "/assets/generated/exercise-kettlebell-swings.dim_400x250.jpg",
   },
 ];
 

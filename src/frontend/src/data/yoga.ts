@@ -10,6 +10,7 @@ export interface YogaPose {
   benefits: string[];
   instructions: string[];
   cautions?: string;
+  image: string;
 }
 
 export const yogaPoses: YogaPose[] = [
@@ -37,6 +38,7 @@ export const yogaPoses: YogaPose[] = [
       "Arms along sides, palms facing forward",
       "Breathe steadily and hold",
     ],
+    image: "/assets/generated/yoga-mountain-pose.dim_400x250.jpg",
   },
   {
     id: "y2",
@@ -62,6 +64,7 @@ export const yogaPoses: YogaPose[] = [
       "Rest forehead on mat",
       "Hold and breathe deeply",
     ],
+    image: "/assets/generated/yoga-childs-pose.dim_400x250.jpg",
   },
   {
     id: "y3",
@@ -87,6 +90,7 @@ export const yogaPoses: YogaPose[] = [
       "Relax head between arms",
       "Hold 5-8 breaths",
     ],
+    image: "/assets/generated/yoga-downward-dog.dim_400x250.jpg",
   },
   {
     id: "y4",
@@ -111,6 +115,7 @@ export const yogaPoses: YogaPose[] = [
       "Square hips toward front",
       "Hold, then switch sides",
     ],
+    image: "/assets/generated/yoga-warrior-i.dim_400x250.jpg",
   },
   {
     id: "y5",
@@ -135,6 +140,7 @@ export const yogaPoses: YogaPose[] = [
       "Gaze over right fingers",
       "Hold, then switch sides",
     ],
+    image: "/assets/generated/yoga-warrior-ii.dim_400x250.jpg",
   },
   {
     id: "y6",
@@ -159,6 +165,7 @@ export const yogaPoses: YogaPose[] = [
       "Fix gaze on still point",
       "Hold, switch sides",
     ],
+    image: "/assets/generated/yoga-tree-pose.dim_400x250.jpg",
   },
   {
     id: "y7",
@@ -184,6 +191,7 @@ export const yogaPoses: YogaPose[] = [
       "Keep knees over ankles",
       "Hold for 5 breaths",
     ],
+    image: "/assets/generated/yoga-bridge-pose.dim_400x250.jpg",
   },
   {
     id: "y8",
@@ -208,6 +216,7 @@ export const yogaPoses: YogaPose[] = [
       "Flow between poses rhythmically",
       "Repeat 10-15 times",
     ],
+    image: "/assets/generated/yoga-cat-cow.dim_400x250.jpg",
   },
   {
     id: "y9",
@@ -232,6 +241,7 @@ export const yogaPoses: YogaPose[] = [
       "Hold feet or shins",
       "Maintain flat back",
     ],
+    image: "/assets/generated/yoga-seated-forward-fold.dim_400x250.jpg",
   },
   {
     id: "y10",
@@ -256,6 +266,7 @@ export const yogaPoses: YogaPose[] = [
       "Lift feet off floor",
       "Hold with engaged core",
     ],
+    image: "/assets/generated/yoga-crow-pose.dim_400x250.jpg",
   },
   {
     id: "y11",
@@ -282,6 +293,7 @@ export const yogaPoses: YogaPose[] = [
     ],
     cautions:
       "Do not attempt without supervision if you have neck issues or are new to inversions.",
+    image: "/assets/generated/yoga-headstand.dim_400x250.jpg",
   },
   // PRANAYAMA
   {
@@ -309,6 +321,7 @@ export const yogaPoses: YogaPose[] = [
       "Inhale right, exhale left — that's 1 cycle",
       "Repeat 5-10 rounds",
     ],
+    image: "/assets/generated/yoga-alternate-nostril-breathing.dim_400x250.jpg",
   },
   {
     id: "p2",
@@ -334,6 +347,7 @@ export const yogaPoses: YogaPose[] = [
       "Exhale fully, belly falls",
       "Continue for 5-10 minutes",
     ],
+    image: "/assets/generated/yoga-belly-breathing.dim_400x250.jpg",
   },
   {
     id: "p3",
@@ -361,6 +375,7 @@ export const yogaPoses: YogaPose[] = [
     ],
     cautions:
       "Avoid during pregnancy, high blood pressure, or heart conditions.",
+    image: "/assets/generated/yoga-kapalabhati.dim_400x250.jpg",
   },
   {
     id: "p4",
@@ -385,6 +400,7 @@ export const yogaPoses: YogaPose[] = [
       "Equal length inhales and exhales",
       "Use throughout asana practice",
     ],
+    image: "/assets/generated/yoga-ujjayi-breath.dim_400x250.jpg",
   },
   {
     id: "p5",
@@ -410,6 +426,7 @@ export const yogaPoses: YogaPose[] = [
       "Feel vibration in skull and chest",
       "Repeat 5-10 times",
     ],
+    image: "/assets/generated/yoga-bhramari.dim_400x250.jpg",
   },
   {
     id: "p6",
@@ -436,6 +453,7 @@ export const yogaPoses: YogaPose[] = [
       "Repeat other side",
       "Practice 10-20 rounds",
     ],
+    image: "/assets/generated/yoga-anulom-vilom.dim_400x250.jpg",
   },
   {
     id: "p7",
@@ -461,6 +479,7 @@ export const yogaPoses: YogaPose[] = [
       "Feel the cooling sensation",
       "Repeat 8-10 rounds",
     ],
+    image: "/assets/generated/yoga-sheetali-breath.dim_400x250.jpg",
   },
 ];
 

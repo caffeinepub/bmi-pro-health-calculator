@@ -52,6 +52,25 @@ export function YogaTab() {
 
   return (
     <div className="space-y-5">
+      {/* Hero Image */}
+      <div className="rounded-xl overflow-hidden relative h-36 sm:h-48 mb-2">
+        <img
+          src="/assets/generated/yoga-hero.dim_800x400.jpg"
+          alt="Yoga"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
+          <div>
+            <h2 className="font-display font-bold text-2xl text-white">
+              Yoga &amp; Pranayama 🧘
+            </h2>
+            <p className="text-white/80 text-sm">
+              Poses, breathing exercises, and mindful practice
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-wrap gap-2">
         <Select value={selectedType} onValueChange={setSelectedType}>
           <SelectTrigger className="w-36" data-ocid="yoga.type.select">
@@ -103,6 +122,14 @@ export function YogaTab() {
             className="bg-card border-border card-hover"
             data-ocid={`yoga.item.${idx + 1}`}
           >
+            <div className="relative h-28 overflow-hidden rounded-t-lg">
+              <img
+                src={pose.image}
+                alt={pose.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            </div>
             <CardHeader className="pb-2">
               <div className="flex justify-between items-start">
                 <div>

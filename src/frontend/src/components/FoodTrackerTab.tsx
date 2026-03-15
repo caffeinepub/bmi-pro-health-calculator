@@ -504,11 +504,11 @@ function SmartEstimatorPanel({
   );
 }
 
-export function FoodTrackerTab() {
+export function FoodTrackerTab({ username }: { username: string }) {
   const todayStr = new Date().toISOString().split("T")[0];
   const [log, setLog] = useState<LogEntry[]>(() => {
     try {
-      const saved = localStorage.getItem("food_log");
+      const saved = localStorage.getItem(`bmi_pro_${username}_food_logs`);
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -553,7 +553,10 @@ export function FoodTrackerTab() {
 
   const saveLog = (newLog: LogEntry[]) => {
     setLog(newLog);
-    localStorage.setItem("food_log", JSON.stringify(newLog));
+    localStorage.setItem(
+      `bmi_pro_${username}_food_logs`,
+      JSON.stringify(newLog),
+    );
   };
 
   const todayLog = useMemo(

@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { useInternetIdentity } from "@/hooks/useInternetIdentity";
 import {
   Activity,
   Footprints,
@@ -35,21 +34,21 @@ const DAILY_GOAL = 10000;
 const STEP_LENGTH_M = 0.762;
 const STEP_KCAL = 0.04;
 
-function getStorageKey(principal: string | null) {
-  return principal ? `${principal}:steps_log` : "steps_log";
+function getStorageKey(uname: string) {
+  return `bmi_pro_${uname}_step_logs`;
 }
 
-function loadStepsLog(principal: string | null): StepEntry[] {
+function loadStepsLog(uname: string): StepEntry[] {
   try {
-    const raw = localStorage.getItem(getStorageKey(principal));
+    const raw = localStorage.getItem(getStorageKey(uname));
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
   }
 }
 
-function saveStepsLog(principal: string | null, log: StepEntry[]) {
-  localStorage.setItem(getStorageKey(principal), JSON.stringify(log));
+function saveStepsLog(uname: string, log: StepEntry[]) {
+  localStorage.setItem(getStorageKey(uname), JSON.stringify(log));
 }
 
 function getTodayStr() {
@@ -85,16 +84,12 @@ function hasDeviceMotion(): boolean {
 function needsIOSPermission(): boolean {
   return (
     hasDeviceMotion() &&
-    // biome-ignore lint/suspicious/noExplicitAny: iOS-specific API
     typeof (DeviceMotionEvent as any).requestPermission === "function"
   );
 }
 
-export function StepsTab() {
-  const { identity } = useInternetIdentity();
-  const principal = identity?.getPrincipal().toString() ?? null;
-
-  const [log, setLog] = useState<StepEntry[]>(() => loadStepsLog(principal));
+export function StepsTab({ username }: { username: string }) {
+  const [log, setLog] = useState<StepEntry[]>(() => loadStepsLog(username));
   const [sessionSteps, setSessionSteps] = useState(0);
   const [isTracking, setIsTracking] = useState(false);
   const [permissionState, setPermissionState] = useState<
@@ -110,8 +105,8 @@ export function StepsTab() {
 
   // Reload log when principal changes
   useEffect(() => {
-    setLog(loadStepsLog(principal));
-  }, [principal]);
+    setLog(loadStepsLog(username));
+  }, [username]);
 
   const today = getTodayStr();
   const todayEntry = log.find((e) => e.date === today);
@@ -171,7 +166,6 @@ export function StepsTab() {
   const startTracking = useCallback(async () => {
     if (needsIOSPermission()) {
       try {
-        // biome-ignore lint/suspicious/noExplicitAny: iOS-specific API
         const result = await (DeviceMotionEvent as any).requestPermission();
         if (result !== "granted") {
           setPermissionState("denied");
@@ -209,11 +203,11 @@ export function StepsTab() {
         const newLog = [...updated, entry].sort((a, b) =>
           a.date.localeCompare(b.date),
         );
-        saveStepsLog(principal, newLog);
+        saveStepsLog(username, newLog);
         return newLog;
       });
     },
-    [today, goal, principal],
+    [today, goal, username],
   );
 
   const handleLogSession = () => {

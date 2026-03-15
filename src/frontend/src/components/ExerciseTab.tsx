@@ -88,6 +88,25 @@ export function ExerciseTab() {
 
   return (
     <div className="space-y-5">
+      {/* Hero Image */}
+      <div className="rounded-xl overflow-hidden relative h-36 sm:h-48 mb-2">
+        <img
+          src="/assets/generated/exercise-hero.dim_800x400.jpg"
+          alt="Exercise"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-4">
+          <div>
+            <h2 className="font-display font-bold text-2xl text-white">
+              Exercise Library 💪
+            </h2>
+            <p className="text-white/80 text-sm">
+              All levels, all goals, no-equipment options
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Quick Body Part Fat Burn Shortcuts */}
       <div>
         <div className="flex items-center gap-2 mb-2">
@@ -250,6 +269,14 @@ export function ExerciseTab() {
             className="bg-card border-border card-hover"
             data-ocid={`exercise.item.${idx + 1}`}
           >
+            <div className="relative h-28 overflow-hidden rounded-t-lg">
+              <img
+                src={ex.image}
+                alt={ex.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            </div>
             <CardHeader className="pb-2">
               <div className="flex justify-between items-start">
                 <CardTitle className="text-sm font-display">
